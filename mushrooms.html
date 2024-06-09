@@ -12,14 +12,14 @@
     <script src="mushrooms.js"></script>
     <script>
       const mushDataParse = JSON.parse(mushData);
-     
+
       const content = document.querySelector(".content");
       let dataBlock;
-      
 
-      const edibleMushrooms = mushDataParse.edible_mushrooms;
-      edibleMushrooms.forEach(element => {
-        dataBlock = `
+      function showMushrooms(typeMushrooms) {
+        const mushrooms = mushDataParse[typeMushrooms];
+        mushrooms.forEach((element) => {
+          dataBlock = `
       <div class="content_box">
       <div class="box_image">
         <img src="${element.mushroom_image}" alt="${element.name}" class="image" />
@@ -32,10 +32,12 @@
       </p>
       </div>
       `;
-        content.insertAdjacentHTML("afterbegin", dataBlock);
-      });
-      
-      
+          content.insertAdjacentHTML("beforebegin", dataBlock);
+        });
+      }
+
+      showMushrooms('edible_mushrooms');
+      showMushrooms('poisonous_mushrooms');
     </script>
   </body>
 </html>
