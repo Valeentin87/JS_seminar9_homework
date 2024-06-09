@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Съедобные и не съедобные грибы</title>
+  </head>
+
+  <body>
+    <div class="content"></div>
+
+    <script src="mushrooms.js"></script>
+    <script>
+      const mushDataParse = JSON.parse(mushData);
+     
+      const content = document.querySelector(".content");
+      let dataBlock;
+      
+
+      const edibleMushrooms = mushDataParse.edible_mushrooms;
+      edibleMushrooms.forEach(element => {
+        dataBlock = `
+      <div class="content_box">
+      <div class="box_image">
+        <img src="${element.mushroom_image}" alt="${element.name}" class="image" />
+      </div>
+      <p class="box_name">
+        ${element.name}
+      </p>
+      <p class="box_description">
+        ${element.description}
+      </p>
+      </div>
+      `;
+        content.insertAdjacentHTML("afterbegin", dataBlock);
+      });
+      
+      
+    </script>
+  </body>
+</html>
